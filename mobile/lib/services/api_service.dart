@@ -1,0 +1,38 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:flutter/foundation.dart';
+import '../models/estacion.dart';
+
+class ApiService {
+  // Detecta automáticamente si estás en Chrome (localhost) o Emulador Android
+  final String baseUrl = kIsWeb ? "http://127.0.0.1:8000" : "http://10.0.2.2:8000";
+  final String token = "admin_fisi";
+
+  Future<List<Estacion>> fetchEstaciones() async {
+    try {
+      final response = await http.get(Uri.parse('$baseUrl/estaciones/'));
+      if (response.statusCode == 200) {
+        List jsonResponse = json.decode(response.body);
+        return jsonResponse.map((data) => Estacion.fromJson(data)).toList();
+      } else {
+        throw Exception('Error: ${response.statusCode}');
+      }
+    } catch (e) {
+      throw Exception('Error de conexión con el Backend SMAT');
+    }
+  }
+
+  Future<void> createEstacion(Estacion estacion) async {
+    final response = await http.post(
+      Uri.parse('$baseUrl/estaciones/'),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+      body: jsonEncode(estacion.toJson()),
+    );
+    if (response.statusCode != 200 && response.statusCode != 201) {
+      throw Exception('No se pudo crear la estación');
+    }
+  }
+}

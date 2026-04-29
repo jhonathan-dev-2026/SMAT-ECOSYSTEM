@@ -1,0 +1,31 @@
+# --- Flutter / Mobile ---
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+ios/.generated/
+android/app/debug/
+android/app/profile/
+android/app/release/
+
+# --- Python / Backend ---
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+.env
+
+# --- Base de Datos ---
+*.db
+*.sqlite3
+
+# --- IDEs y Sistema ---
+.vscode/
+.idea/
+.DS_Store
+*.log
