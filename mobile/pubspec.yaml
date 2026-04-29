@@ -1,0 +1,21 @@
+name: mi_app_laboratorio
+description: "SMAT Ecosystem - Monitoreo Profesional"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.5
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  http: ^1.1.0  # Versión estándar y estable para interoperabilidad
+
+dev_dependencies:
+  flutter_lints: ^3.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
